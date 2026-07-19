@@ -12,6 +12,10 @@ end
 myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
 hs.alert.show("Config loaded")
 
+hs.hotkey.bind({"ctrl", "cmd", "shift"}, "4", function()
+    hs.task.new("/usr/sbin/screencapture", nil, {"-i", "-c"}):start()
+end)
+
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "W", function()
     hs.alert.show("Hello World!")
 end)
