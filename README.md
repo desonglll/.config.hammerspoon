@@ -9,6 +9,7 @@ https://www.hammerspoon.org/
 # https://github.com/Hammerspoon/hammerspoon/issues/579
 defaults write org.hammerspoon.Hammerspoon MJConfigFile "~/.config/.hammerspoon/init.lua"
 
+defaults write com.apple.HIToolbox AppleCapsLockSwitchesInputSource -bool true
 # OR
 
 mkdir -p ~/.hammerspoon
