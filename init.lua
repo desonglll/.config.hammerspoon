@@ -47,3 +47,21 @@ end)
 hs.hotkey.bind({"cmd", "shift"}, "O", function()
     hs.application.open("md.obsidian")
 end)
+
+local dndTask
+hs.hotkey.bind({"cmd", "shift"}, "D", function()
+    if dndTask and dndTask:isRunning() then return end
+
+    dndTask = hs.task.new("/usr/bin/shortcuts", function(exitCode, _, stderr)
+        dndTask = nil
+        if exitCode ~= 0 then
+            hs.printf("切换勿扰模式失败：%s", stderr)
+            hs.alert.show("切换勿扰模式失败，请检查快捷指令")
+        end
+    end, {"run", "Hammerspoon 切换勿扰模式"})
+
+    if not dndTask:start() then
+        dndTask = nil
+        hs.alert.show("无法启动勿扰模式快捷指令")
+    end
+end)
